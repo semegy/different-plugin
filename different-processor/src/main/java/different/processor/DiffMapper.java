@@ -1,8 +1,8 @@
 package different.processor;
 
-public class DiffMapper {
-    protected  String packageName;
+import different.processor.annotation.ResultSkipStrategy;
 
+public class DiffMapper {
     public static <S> CheckResult differ(S t1, S t2) {
         try {
             assert t1 != null;
@@ -12,7 +12,18 @@ public class DiffMapper {
         }
         CheckDiff checkDiffer = CheckDiff.buildCheckDiff(t1);
         checkDiffer.keyName = t1.getClass().getSimpleName();
-        return checkDiffer.diff(t1, t2);
+        CheckResult diff = checkDiffer.diff(t1, t2);
+        // 跳跃属性
+        ResultSkipStrategy.skip(diff);
+        return diff;
     }
 
+    public static void putSkipPropertyStrategy(String propertyPath, ResultSkipStrategy skipStrategy) {
+        ResultSkipStrategy.skipPropertyStrategy.put(propertyPath, skipStrategy);
+    }
+
+    public static void putUniquePropertyStrategy(String propertyPath, ResultSkipStrategy skipStrategy) {
+        ResultSkipStrategy.skipPropertyStrategy.put(propertyPath, skipStrategy);
+
+    }
 }

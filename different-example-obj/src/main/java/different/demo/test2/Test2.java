@@ -2,7 +2,7 @@ package different.demo.test2;
 
 
 import different.demo.test.Test;
-import different.processor.Skip;
+import different.processor.annotation.Skip;
 
 import java.util.HashMap;
 import java.util.Map;

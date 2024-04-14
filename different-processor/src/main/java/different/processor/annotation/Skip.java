@@ -1,11 +1,12 @@
-package different.processor;
+package different.processor.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-@Target(ElementType.FIELD) // 注解用在方法上
+@Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface Different {
+// 属性跳跃
+public @interface Skip {
 }
